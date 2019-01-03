@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import WeatherLocation from './components/WeatherLocation/';
 import './App.css';
+import { SUN, CLOUD } from './constants/weathers';
+
+const data = {
+  city: 'Pontevedra',
+  temperature: 5,
+  weatherState: CLOUD,
+  humidity: 10,
+  wind: 10,
+}
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <WeatherLocation data={ data }></WeatherLocation>
       </div>
     );
   }
