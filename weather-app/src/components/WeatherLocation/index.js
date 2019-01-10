@@ -4,6 +4,12 @@ import WeatherData from './WeatherData';
 import './style.css';
 import { CLOUD, SUN } from '../../constants/weathers';
 
+const location = 'Caldas de Reis, es';
+const api_key = 'd9ad11fb4b6b8357afd1540e2b7e20d3';
+const url_base_weather = 'http://api.openweathermap.org/data/2.5/weather?units=metric';
+
+const api_weather = `${url_base_weather}&q=${location}&appid=${api_key}`;
+
 class WeatherLocation extends Component {
 
   constructor(props) {
@@ -19,13 +25,33 @@ class WeatherLocation extends Component {
     }
   }
 
-  handleUpdateClick = () => {
-    this.setState({
+  getData = weather_data => {
+    const { humidity, temp }  = weather_data.main;
+    const {speed } = weather_data.wind;
+    const weatherState = SUN;
+
+    const data = {
+      city: weather_data.name,
       data: {
-        temperature: 20,
-        weatherState: SUN,
+        humidity,
+        temperature: temp,
+        weatherState,
+        wind: speed
       }
-    });
+    }
+
+    return data;
+  }
+
+  handleUpdateClick = () => {
+
+    fetch(api_weather).then((data) => {
+      return data.json();
+    }).then(body => {
+      console.log(body);
+
+      this.setState(this.getData(body));
+    })
   }
 
   render () {

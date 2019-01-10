@@ -3,6 +3,7 @@ import WeatherLocation from './components/WeatherLocation/';
 import './App.css';
 import { SUN, CLOUD } from './constants/weathers';
 
+
 const data = {
   city: 'Pontevedra',
   temperature: 5,
