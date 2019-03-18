@@ -4,6 +4,7 @@
   text-align: left;
   color: #888;
   line-height: 35px;
+  display:flex;
 }
 .locationContainer h1 {
   margin: 0;

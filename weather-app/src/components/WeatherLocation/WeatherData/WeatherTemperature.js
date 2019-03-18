@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import {
   SUN,
   CLOUD,
-  CLOUDY,
+  THUNDER,
+  DRIZZLE,
   RAIN,
   SNOW,
   WINDY,
@@ -13,9 +14,10 @@ import './style.css';
 
 const icons = {
   [CLOUD]: 'cloud',
-  [CLOUDY]: 'cloudy',
   [SUN]: 'day-sunny',
   [RAIN]: 'rain',
+  [THUNDER]: 'day-thunderstorm',
+  [DRIZZLE]: 'day-showers',
   [SNOW]: 'snow',
   [WINDY]: 'windy',
 }
