@@ -1,0 +1,17 @@
+.locationlist {
+  height: 85vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 50em) {
+  .locationlist {
+    height: 30vh;
+    overflow: auto;
+    margin-bottom: 20px
+  }
+}
+
+.forecastTitle {
+  text-align: left;
+}

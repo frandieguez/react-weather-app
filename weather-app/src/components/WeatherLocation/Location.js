@@ -5,7 +5,7 @@ import './style.css';
 const Location = ({ city }) => {
   return (
     <div className="locationContainer">
-        <h1>{ city }</h1>
+      <h1>{ city }</h1>
     </div>
   )
 }

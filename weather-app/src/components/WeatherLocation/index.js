@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import './style.css';
-import transformWeather from '../../services/transformWeather';
-import getApiUrl from '../../services/api_url';
+import { transformWeather } from '../../services/transformWeather';
+import *  as Openweather from '../../services/api_url';
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Paper from '@material-ui/core/Paper'
 
@@ -20,7 +20,7 @@ class WeatherLocation extends Component {
 
   handleUpdateClick = async () => {
     this.setState({data: null})
-    fetch(getApiUrl(this.state.city)).then((data) => {
+    fetch(Openweather.getApiUrl(this.state.city)).then((data) => {
       return data.json();
     }).then((data) => {
       data = transformWeather(data)
@@ -28,6 +28,8 @@ class WeatherLocation extends Component {
       this.setState({
         data
       });
+    }).catch((err) => {
+      console.log(err)
     })
   }
 
@@ -46,12 +48,10 @@ class WeatherLocation extends Component {
         <Location city={city}></Location>
         {data ?
           (
-            <div>
               <Paper>
                 <WeatherData data={data}></WeatherData>
               </Paper>
-              <button onClick={this.handleUpdateClick}>Update</button>
-            </div>
+              // <button onClick={this.handleUpdateClick}>Update</button>
           )
           :
           <CircularProgress/>
