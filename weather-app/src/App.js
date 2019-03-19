@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import LocationList from './components/LocationList';
 import './App.css';
 import { Grid, Row, Col} from 'react-flexbox-grid';
-import { Typography, AppBar, Toolbar, Paper } from '@material-ui/core';
+
+import List from '@material-ui/core/List';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import { Paper } from '@material-ui/core';
+
 import ForecastExtended from './components/ForecastExtended';
-import { CircularProgress } from '@material-ui/core'
 
 const cities = [
-  'Madrid,ES',
+  'Madrid,es',
   'Bogota,co',
   'Mexico,mx',
   'Moscow,ru',
@@ -30,23 +36,26 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <AppBar position="sticky">
-          <Toolbar>
-            <Typography>Weather App</Typography>
+        <AppBar position="static">
+          <Toolbar variant="dense">
+            <Typography variant="h6" color="inherit">
+            Weather App
+            </Typography>
           </Toolbar>
+
         </AppBar>
 
         <Grid fluid className="App">
           <Row>
-            <Col xs={12} md={6}>
-              <Paper>
+            <Col xs>
+              <List>
                 <LocationList
                   cities={ cities }
                   onSelectedLocation={this.handleSelectionLocation}>
                 </LocationList>
-              </Paper>
+              </List>
             </Col>
-            <Col xs={12} md={6}>
+            <Col xs>
               <Paper>
                 <div className="details">
                 {

@@ -38,6 +38,7 @@ class ForecastExtended extends React.Component {
       if (!data.list) {
         return;
       }
+
       data = transformForecast(data);
 
       this.setState({
@@ -50,8 +51,10 @@ class ForecastExtended extends React.Component {
     this.fetchData(this.props.ticy)
   }
 
-  componentWillReceiveProps(props) {
-    this.fetchData(props.city)
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.city !== this.props.city) {
+      this.fetchData(nextProps.city)
+    }
   }
 
   render() {

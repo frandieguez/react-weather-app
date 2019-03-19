@@ -1,3 +1,6 @@
+body {
+  background:#eee;
+}
 .appTitle {
   color: White;
 }
@@ -7,7 +10,7 @@
   width:100%;
   padding: 1rem 0;
   height: 85vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   text-align:left;
   padding:1em;
 }

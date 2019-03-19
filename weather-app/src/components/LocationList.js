@@ -1,20 +1,28 @@
 import React from 'react'
 import WeatherLocation from './WeatherLocation';
 import PropTypes from 'prop-types'
+
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+
 import './styles.css';
 
 let handlerLocationClick = (city, onSelectedLocation) => {
-  console.log(city)
   onSelectedLocation(city)
 }
 
 let LocationList = ({ cities, onSelectedLocation }) => (
   <div className="locationlist">
     {cities.map( (city, index) => (
-      <WeatherLocation
-        key={`location-${index}`}
-        city={city}
-        onWeatherLocationClick={() => handlerLocationClick(city, onSelectedLocation)} />
+      <React.Fragment>
+        <ListItem button key={index}>
+          <WeatherLocation
+            key={`location-${index}`}
+            city={city}
+            onWeatherLocationClick={() => handlerLocationClick(city, onSelectedLocation)} />
+        </ListItem>
+        <Divider />
+      </React.Fragment>
     ))}
   </div>
 )

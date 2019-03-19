@@ -1,8 +1,6 @@
 .locationContainer {
   max-width:100%;
   text-align: left;
-  color: #888;
-  display:flex;
   overflow: auto;
   white-space: nowrap;
 }
@@ -13,12 +11,8 @@
 }
 
 .weatherLocationContainer {
-  margin-left: auto 10px;
-  min-width:350px;
   box-sizing: border-box;
-  width: calc(100% - 20px);
-  padding:1rem;
+  width: 100%;
   font-family: 'Roboto', sans-serif;
   cursor:pointer;
-  padding-left: 1rem;
 }
