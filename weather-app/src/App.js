@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import LocationList from './components/LocationList';
-import './App.css';
 import { Grid, Row, Col} from 'react-flexbox-grid';
-
-import { setCity} from './actions/index';
-import { store } from './store/index';
-
+import LocationListContainer from './containers/LocationListContainer';
 import List from '@material-ui/core/List';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Paper } from '@material-ui/core';
 
+import './App.css';
 import ForecastExtended from './components/ForecastExtended';
 
 const cities = [
@@ -31,12 +27,6 @@ class App extends Component {
     }
   }
 
-  handleSelectionLocation = (city) => {
-    this.setState({city})
-
-    store.dispatch(setCity(city));
-  }
-
   render() {
     return (
       <React.Fragment>
@@ -53,10 +43,7 @@ class App extends Component {
           <Row>
             <Col xs>
               <List>
-                <LocationList
-                  cities={ cities }
-                  onSelectedLocation={this.handleSelectionLocation}>
-                </LocationList>
+                <LocationListContainer cities={cities}/>
               </List>
             </Col>
             <Col xs>
