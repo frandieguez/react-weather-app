@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import LocationList from './components/LocationList';
 import './App.css';
 import { Grid, Row, Col} from 'react-flexbox-grid';
-import { createStore } from 'redux';
+
+import { setCity} from './actions/index';
+import { store } from './store/index';
 
 import List from '@material-ui/core/List';
 import AppBar from '@material-ui/core/AppBar';
@@ -19,12 +21,6 @@ const cities = [
   'Moscow,ru',
 ]
 
-// By adding the __REDUX_DEVTOOLS_EXTENSION function we connect with the Chrome redux
-const store = createStore(
-  () => {},
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-
 class App extends Component {
 
   constructor(props){
@@ -37,10 +33,8 @@ class App extends Component {
 
   handleSelectionLocation = (city) => {
     this.setState({city})
-    console.log(`handle `);
 
-    const action = { type: 'setCity', value: city};
-    store.dispatch(action);
+    store.dispatch(setCity(city));
   }
 
   render() {
