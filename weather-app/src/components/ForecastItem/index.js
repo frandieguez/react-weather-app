@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import WeatherData from '../WeatherLocation/WeatherData';
-import Moment from 'react-moment';
 
 const ForecastItem = ({ weekDay, hour, data }) => {
   return (
