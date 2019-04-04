@@ -4,11 +4,11 @@ import {connect} from 'react-redux';
 
 import ForecastExtended from '../components/ForecastExtended';
 
-const ForecastExtendedContainer = (props) => {
+const ForecastExtendedContainer = ({ city }) => {
   return (
-    !props.city
+    !city
     ? <div>Por favor selecciona una ciudad</div>
-    : <ForecastExtended city={props.city} />
+    : <ForecastExtended city={city} />
   )
 }
 
@@ -19,4 +19,3 @@ ForecastExtendedContainer.propTypes = {
 const mapStatetoProps = state => ({ city: state.city });
 
 export default connect(mapStatetoProps, null)(ForecastExtendedContainer);
-

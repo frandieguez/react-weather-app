@@ -7,10 +7,6 @@ import ListItem from '@material-ui/core/ListItem';
 
 import './styles.css';
 
-let handlerLocationClick = (city, onSelectedLocation) => {
-  onSelectedLocation(city)
-}
-
 let LocationList = ({ cities, onSelectedLocation }) => (
   <div className="locationlist">
     {cities.map( (city, index) => (
@@ -19,7 +15,7 @@ let LocationList = ({ cities, onSelectedLocation }) => (
           <WeatherLocation
             key={`location-${index}`}
             city={city}
-            onWeatherLocationClick={() => handlerLocationClick(city, onSelectedLocation)} />
+            onWeatherLocationClick={() => onSelectedLocation(city)} />
         </ListItem>
         <Divider />
       </React.Fragment>
