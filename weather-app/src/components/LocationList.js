@@ -10,8 +10,8 @@ import './styles.css';
 let LocationList = ({ cities, onSelectedLocation }) => (
   <div className="locationlist">
     {cities.map( (city, index) => (
-      <React.Fragment>
-        <ListItem button key={index}>
+      <React.Fragment key={index}>
+        <ListItem button>
           <WeatherLocation
             key={`location-${index}`}
             city={city}
