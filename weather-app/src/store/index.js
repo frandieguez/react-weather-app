@@ -1,13 +1,18 @@
-import { createStore } from 'redux';
-import { city } from  '../reducers/city'
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import combinedReducers from '../reducers'
 
 const initialState = {
-  city: 'Madrid,es'
+  city: 'Madrid,es',
+  cities: {}
 };
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 // By adding the __REDUX_DEVTOOLS_EXTENSION function we connect with the Chrome redux
+// I use composerEnhancers to be able to use Redux dev tools and thunk at the same time
 export const store = createStore(
-  city,
+  combinedReducers,
   initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancers(applyMiddleware(thunk))
 );
