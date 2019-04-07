@@ -2,81 +2,40 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ForecastItem from './ForecastItem';
 import './styles.css';
-import * as Openweather from '../services/api_url';
 import CircularProgress from '@material-ui/core/CircularProgress'
-import { transformForecast} from '../services/transformWeather';
 
-class ForecastExtended extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      forecastData: []
-    }
-  }
-
-  renderForecastItemDays() {
-    if (!this.state.forecastData) {
-      return;
-    }
-
-    return (this.state.forecastData.map((day, index) => {
+const renderForecastItemDays = (city, forecastData) => (
+  <React.Fragment>
+    <h2 className='forecastTitle'>Prognostico extendido para {city}</h2>
+    {forecastData.map((day, index) => {
       return <ForecastItem
           key={index}
           weekDay={day.weekDay}
           hour={day.hour}
           data={day.data}>
         </ForecastItem>
-    }));
-  }
+    })}
+  </React.Fragment>
+)
 
-  fetchData(city) {
-    fetch(Openweather.getForecastUrl(city)).then((data) => {
-      return data.json();
-    }).then((data) => {
-      if (!data.list) {
-        return;
-      }
+const renderLoading = () => (
+  <React.Fragment>
+    <p>Fetching data</p>
+    <CircularProgress/>
+  </React.Fragment>
+)
 
-      data = transformForecast(data);
-
-      this.setState({
-        forecastData: data
-      });
-    })
-  }
-
-  componentDidMount() {
-    this.fetchData(this.props.ticy)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.city !== this.props.city) {
-      this.fetchData(nextProps.city)
-    }
-  }
-
-  render() {
-    const {city} = this.props;
-    const { forecastData } = this.state;
-
-    return (
-      forecastData ?
-        (
-          <React.Fragment>
-            <h2 className='forecastTitle'>Prognostico extendido para {city}</h2>
-            {this.renderForecastItemDays()}
-          </React.Fragment>
-        )
-        :
-        <CircularProgress/>
-    )
-  }
+const ForecastExtended = ({ city, forecastData })  => {
+  return (
+    forecastData ?
+      renderForecastItemDays(city, forecastData)
+      : renderLoading()
+  )
 }
 
 ForecastExtended.propTypes = {
-  city: PropTypes.string.isRequired
+  city: PropTypes.string,
+  forecastData: PropTypes.array,
 }
 
 export default ForecastExtended;
