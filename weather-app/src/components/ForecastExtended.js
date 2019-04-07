@@ -18,9 +18,9 @@ const renderForecastItemDays = (city, forecastData) => (
   </React.Fragment>
 )
 
-const renderLoading = () => (
+const renderLoading = (city) => (
   <React.Fragment>
-    <p>Fetching data</p>
+    <p>Fetching data for {city}</p>
     <CircularProgress/>
   </React.Fragment>
 )
@@ -29,7 +29,7 @@ const ForecastExtended = ({ city, forecastData })  => {
   return (
     forecastData ?
       renderForecastItemDays(city, forecastData)
-      : renderLoading()
+      : (city) ? renderLoading(city) : 'Please select a city to load its data'
   )
 }
 

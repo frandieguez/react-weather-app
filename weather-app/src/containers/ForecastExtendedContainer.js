@@ -6,7 +6,7 @@ import ForecastExtended from '../components/ForecastExtended';
 
 const ForecastExtendedContainer = ({ city, forecastData }) => {
   return (
-    city && <ForecastExtended city={city} forecastData={forecastData} />
+    <ForecastExtended city={city} forecastData={forecastData} />
   )
 }
 
