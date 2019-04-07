@@ -1,29 +1,22 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux';
-import { setCity } from '../actions'
+import { setSelectedCity } from '../actions'
 import PropTypes from 'prop-types';
 import LocationList from '../components/LocationList';
 
-class LocationListContainer extends Component {
-
-  handleSelectionLocation = (city) => {
-    this.props.setCity(city);
-  }
-
-  render() {
-    return (
-      <LocationList cities={this.props.cities} onSelectedLocation={this.handleSelectionLocation}></LocationList>
-    )
-  }
+const LocationListContainer = ({cities, setSelectedCity}) => {
+  return (
+    <LocationList cities={cities} onSelectedLocation={(city) => setSelectedCity(city)}></LocationList>
+  )
 }
 
 LocationListContainer.propTypes = {
   cities: PropTypes.array.isRequired,
-  setCity: PropTypes.func.isRequired,
+  setSelectedCity: PropTypes.func.isRequired,
 }
 
 const mapDispatchToProps = dispatch => ({
-  setCity: value => dispatch(setCity(value))
+  setSelectedCity: value => dispatch(setSelectedCity(value))
 });
 
 export default connect(null, mapDispatchToProps)(LocationListContainer);
