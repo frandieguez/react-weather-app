@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { getForecastDataFromCities } from './../reducers/';
+import { getForecastDataFromCities, getCity } from './../reducers/';
 import ForecastExtended from '../components/ForecastExtended';
 
 const ForecastExtendedContainer = ({ city, forecastData }) => {
@@ -16,7 +16,7 @@ ForecastExtendedContainer.propTypes = {
 }
 
 const mapStatetoProps = state => ({
-  city: state.city,
+  city: getCity(state),
   forecastData: getForecastDataFromCities(state)
 });
 
