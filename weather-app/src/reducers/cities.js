@@ -17,4 +17,5 @@ export const cities = (state = {}, action) => {
   return state;
 }
 
-export const getForecastDataFromCities = (state, city) => state[city] && state[city].forecastData;
+export const getForecastDataFromCities = (state) =>
+  state.cities[state.city] && state.cities[state.city].forecastData;
