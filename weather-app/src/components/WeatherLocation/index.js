@@ -1,69 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import './style.css';
-import { transformWeather } from '../../services/transformWeather';
-import *  as Openweather from '../../services/api_url';
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Paper from '@material-ui/core/Paper'
 
-class WeatherLocation extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      city: props.city,
-      data: null
+export const WeatherLocation = ({onWeatherLocationClick, city, data}) => (
+  <div className="weatherLocationContainer" onClick={onWeatherLocationClick}>
+    <Location city={city}></Location>
+    {data ?
+      (
+          <Paper>
+            <WeatherData data={data}></WeatherData>
+          </Paper>
+      )
+      :
+      <CircularProgress size={60} thickness={7} />
     }
-  }
-
-  handleUpdateClick = async () => {
-    this.setState({data: null})
-    fetch(Openweather.getApiUrl(this.state.city)).then((data) => {
-      return data.json();
-    }).then((data) => {
-      data = transformWeather(data)
-
-      this.setState({
-        data
-      });
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
-
-  componentDidMount() {
-    this.handleUpdateClick();
-  }
-
-  onWeatherLocationClick = () => {
-    this.props.onWeatherLocationClick(this.state.city)
-  }
-
-  render () {
-    let { city, data } = this.state;
-    return (
-      <div className="weatherLocationContainer" onClick={this.onWeatherLocationClick}>
-        <Location city={city}></Location>
-        {data ?
-          (
-              <Paper>
-                <WeatherData data={data}></WeatherData>
-              </Paper>
-              // <button onClick={this.handleUpdateClick}>Update</button>
-          )
-          :
-          <CircularProgress/>
-        }
-      </div>
-    );
-  }
-}
+  </div>
+)
 
 WeatherLocation.propTypes = {
   city: PropTypes.string.isRequired,
   onWeatherLocationClick: PropTypes.func.isRequired,
+  data: PropTypes.shape({
+    temperature: PropTypes.number.isRequired,
+    humidity: PropTypes.number.isRequired,
+    wind: PropTypes.number.isRequired,
+    weatherState: PropTypes.string.isRequired,
+  }),
 }
 
 export default WeatherLocation;

@@ -10,13 +10,6 @@ import { Paper } from '@material-ui/core';
 
 import './App.css';
 
-const cities = [
-  'Madrid,es',
-  'Bogota,co',
-  'Mexico,mx',
-  'Moscow,ru',
-]
-
 const App = (props) => {
   return (
     <React.Fragment>
@@ -33,7 +26,7 @@ const App = (props) => {
         <Row>
           <Col xs>
             <List>
-              <LocationListContainer cities={cities}/>
+              <LocationListContainer/>
             </List>
           </Col>
           <Col xs>
