@@ -1,10 +1,31 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React + Redux + Redux-thunk + reselect
+
+[![Build Status](https://travis-ci.org/frandieguez/react-weather-app.svg?branch=master)](https://travis-ci.org/frandieguez/react-weather-app)
+
+This project is just a way to review how to work with multiple technoligies around React + Redux. The aim is to create the specs below:
+
+- Have a list of predefined list of Cities around the work
+- In the initial list show the current weather for each city
+- When the user clicks on one city the sidebar must show the forecast for that city
+
+​
+![Screenshot](public/screenshot.jpg?raw=true "Screenshot")
+
+## How I have built it
+
+I have used an iterative approach:
+ - from build a React-only app using event bubbling and share state downwards the components.
+ - migrate to redux
+ - start to use redux-thunk for async API fething
+ - use reselect to create state selectors
+
+Hope you like it, and remember this is just a learn-while-doing application nothing fancy nor highly awesome.
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `yarn start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -12,12 +33,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### `yarn build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -27,7 +48,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -63,6 +84,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ad
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `npm run build` fails to minify
+### `yarn run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
