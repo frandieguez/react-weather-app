@@ -14,8 +14,17 @@ const getWeatherCity  = payload => ({type : GET_WEATHER_CITY, payload });
 const setWeatherCity  = payload => ({type : SET_WEATHER_CITY, payload });
 
 export const setSelectedCity = payload => {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(setCity(payload));
+
+    const state = getState();
+    const date = state.cities[payload] && state.cities[payload].forecastDataDate;
+
+    const now = new Date();
+
+    if (date && (now - date) < 1 * 60 *1000) {
+      return;
+    }
 
     // activate in state an data searched indicator
     return fetch(Openweather.getForecastUrl(payload)).then((data) => {
