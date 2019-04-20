@@ -18,7 +18,6 @@ let LocationList = ({ cities, onSelectedLocation }) => (
             data={city.data}
             onWeatherLocationClick={() => onSelectedLocation(city.name)} />
         </ListItem>
-        <Divider />
       </React.Fragment>
     )
   )}

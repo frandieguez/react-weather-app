@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 50em) {
+@media (max-width: 30em) {
   .locationlist {
     height: 30vh;
     overflow: auto;

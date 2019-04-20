@@ -24,12 +24,12 @@ const App = (props) => {
 
       <Grid fluid className="App">
         <Row>
-          <Col xs>
+          <Col md>
             <List>
               <LocationListContainer/>
             </List>
           </Col>
-          <Col xs>
+          <Col md>
             <Paper>
               <div className="details">
                 <ForecastExtendedContainer/>
