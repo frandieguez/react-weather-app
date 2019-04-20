@@ -1,31 +1,26 @@
 import * as Openweather from '../services/api_url';
 import { transformForecast, transformWeather } from '../services/transformWeather';
 
-export const SET_CITY = 'SET_CITY'
+// Define action names
+export const SET_CITY          = 'SET_CITY'
 export const SET_FORECAST_DATA = 'SET_FORECAST_DATA'
-export const GET_WEATHER_CITY = 'GET_WEATHER_CITY'
-export const SET_WEATHER_CITY = 'SET_WEATHER_CITY'
+export const GET_WEATHER_CITY  = 'GET_WEATHER_CITY'
+export const SET_WEATHER_CITY  = 'SET_WEATHER_CITY'
 
 // Create an action creator
-const setCity = payload => ({ type: SET_CITY, payload });
+const setCity         = payload => ({ type: SET_CITY, payload });
 const setForecastData = payload => ({ type: SET_FORECAST_DATA, payload});
-
-const getWeatherCity = payload => ({type: GET_WEATHER_CITY, payload });
-const setWeatherCity = payload => ({type: SET_WEATHER_CITY, payload });
+const getWeatherCity  = payload => ({type : GET_WEATHER_CITY, payload });
+const setWeatherCity  = payload => ({type : SET_WEATHER_CITY, payload });
 
 export const setSelectedCity = payload => {
   return dispatch => {
     dispatch(setCity(payload));
 
     // activate in state an data searched indicator
-    fetch(Openweather.getForecastUrl(payload)).then((data) => {
+    return fetch(Openweather.getForecastUrl(payload)).then((data) => {
       return data.json();
     }).then( weatherData => {
-      console.log(payload)
-      if (!weatherData.list) {
-        return;
-      }
-
       var forecastData = transformForecast(weatherData);
 
       // change state with the Promise result (fetch)

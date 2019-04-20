@@ -25,13 +25,11 @@ const renderLoading = (city) => (
   </React.Fragment>
 )
 
-const ForecastExtended = ({ city, forecastData })  => {
-  return (
-    forecastData ?
-      renderForecastItemDays(city, forecastData)
-      : (city) ? renderLoading(city) : 'Please select a city to load its data'
-  )
-}
+const ForecastExtended = ({ city, forecastData })  => (
+  forecastData ?
+    renderForecastItemDays(city, forecastData)
+    : (city) ? renderLoading(city) : 'Please select a city to load its data'
+)
 
 ForecastExtended.propTypes = {
   city: PropTypes.string,

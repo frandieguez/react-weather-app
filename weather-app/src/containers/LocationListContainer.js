@@ -14,7 +14,11 @@ class LocationListContainer extends Component {
 
   render() {
     return (
-      <LocationList cities={this.props.citiesWeather} onSelectedLocation={(city) => this.props.setSelectedCity(city)}></LocationList>
+      <LocationList
+        cities={this.props.citiesWeather}
+        onSelectedLocation={(city) => this.props.setSelectedCity(city)}
+      >
+      </LocationList>
     )
   }
 }

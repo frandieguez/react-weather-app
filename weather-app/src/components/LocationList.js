@@ -13,9 +13,10 @@ let LocationList = ({ cities, onSelectedLocation }) => (
       <React.Fragment key={index}>
         <ListItem button>
           <WeatherLocation
+            key={city.key}
             city={city.name}
             data={city.data}
-            onWeatherLocationClick={() => onSelectedLocation(city)} />
+            onWeatherLocationClick={() => onSelectedLocation(city.name)} />
         </ListItem>
         <Divider />
       </React.Fragment>
