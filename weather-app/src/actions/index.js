@@ -21,6 +21,9 @@ export const setSelectedCity = payload => {
     return fetch(Openweather.getForecastUrl(payload)).then((data) => {
       return data.json();
     }).then( weatherData => {
+      if (!weatherData.list) {
+        return;
+      }
       var forecastData = transformForecast(weatherData);
 
       // change state with the Promise result (fetch)

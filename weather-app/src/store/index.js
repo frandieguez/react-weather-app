@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import combinedReducers from '../reducers'
 
 const initialState = {
-  city: {},
+  city: 'Madrid,es',
   cities: {
     'Madrid,es' : {},
     'Bogota,co' : {},
