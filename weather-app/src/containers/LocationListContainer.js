@@ -12,7 +12,7 @@ class LocationListContainer extends Component {
     const { setWeather, setSelectedCity, citiesWeather, city} = this.props;
 
     setWeather(citiesWeather);
-    console.log(city)
+
     setSelectedCity(city)
   }
 
@@ -29,13 +29,16 @@ class LocationListContainer extends Component {
 
 LocationListContainer.propTypes = {
   setSelectedCity: PropTypes.func.isRequired,
+  setWeather: PropTypes.func.isRequired,
   citiesWeather: PropTypes.array.isRequired,
+  city: PropTypes.string.isRequired,
+  cities: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
   citiesWeather: getWeatherCities(state),
   city: getCity(state)
-})
+});
 
 // The two assignements below are equivalent, redux provides a helper to
 // automatically match actions to state.
