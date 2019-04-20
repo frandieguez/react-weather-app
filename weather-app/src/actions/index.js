@@ -32,15 +32,15 @@ export const setSelectedCity = payload => {
 export const setWeather = payload => {
   return dispatch => {
     payload.forEach(city => {
-      dispatch(getWeatherCity(city));
+      dispatch(getWeatherCity(city.name));
 
-      fetch(Openweather.getApiUrl(city)).then((data) => {
+      return fetch(Openweather.getApiUrl(city.name)).then((data) => {
         return data.json();
       }).then((data) => {
         var weather = transformWeather(data)
 
         // change state with the Promise result (fetch)
-        dispatch(setWeatherCity({ city, weather }))
+        dispatch(setWeatherCity({ city: city.name, weather }))
       }).catch((err) => {
         console.log(err)
       })

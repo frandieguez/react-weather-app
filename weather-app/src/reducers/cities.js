@@ -11,7 +11,7 @@ export const cities = (state = {}, action) => {
     case SET_FORECAST_DATA: {
       const { city, forecastData } = action.payload;
 
-      return { ...state, [city]: { forecastData } }
+      return { ...state, [city]: {...state[city], forecastData} }
     }
 
     case GET_WEATHER_CITY: {
@@ -21,10 +21,9 @@ export const cities = (state = {}, action) => {
     }
 
     case SET_WEATHER_CITY: {
-      console.log(SET_WEATHER_CITY, action.payload);
       const { city, weather } = action.payload;
 
-      return { ...state, [city]: { weather } }
+      return { ...state, [city]: {...state[city], weather } }
     }
 
     default:
@@ -37,9 +36,10 @@ export const cities = (state = {}, action) => {
 export const getForecastDataFromCities =
   createSelector((state, city) => state[city] && state[city].forecastData, forecastData => forecastData);
 
-const fromCityObjectsToArray = objects => toPairs(objects).map((key, value) => {
-  return {key, name: key, data: value.weather};
-});
+const fromCityObjectsToArray = objects => {
+  return toPairs(objects)
+    .map(([key, value]) => ({key, name: key, data: value.weather}));
+};
 
 export const getWeatherCities = createSelector(
   state => fromCityObjectsToArray(state),
